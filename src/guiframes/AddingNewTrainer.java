@@ -7,6 +7,7 @@ package guiframes;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import databaseConnection.DatabaseConnection;
 import databaseFacade.DbFacade;
+
 import java.awt.HeadlessException;
 import java.awt.print.PrinterException;
 import java.sql.ResultSet;
@@ -30,14 +31,14 @@ import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
 import resetFieldThread.ResetFieldRunnable;
 
 /**
- *
  * @author pc
  */
 public class AddingNewTrainer extends JFrame {
-    
+
     /**
      * Creates new form TrainerMakeAccount
      */
@@ -45,45 +46,46 @@ public class AddingNewTrainer extends JFrame {
         initComponents();
         showRecords();
     }
-    
+
     private void resetFields() {
         ArrayList<JTextField> listOfTextFields = new ArrayList();
-       
+
         listOfTextFields.add(idtextfield);
         listOfTextFields.add(usernamefield);
         listOfTextFields.add(firstnamefield);
         listOfTextFields.add(surnamefield);
         listOfTextFields.add(emailfield);
         listOfTextFields.add(phonenumberfield);
-        listOfTextFields.add(gendertextfield); 
-        
-        ResetFieldRunnable resetRunnable = 
-                new ResetFieldRunnable(listOfTextFields, dobfield, passwordfield);                                                                         
+        listOfTextFields.add(gendertextfield);
+
+        ResetFieldRunnable resetRunnable =
+                new ResetFieldRunnable(listOfTextFields, dobfield, passwordfield);
         Thread resetFieldsThread = new Thread(resetRunnable);
         resetFieldsThread.start();
     }
-    
+
     public void showRecords() {
         try {
             String query = "SELECT * FROM employees_table";
             PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            
+
             ResultSetMetaData rsm = rs.getMetaData();
             int numberOfColumns = rsm.getColumnCount();
             DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
             dtm.setRowCount(0);
-            
-            while (rs.next()) {                
+
+            while (rs.next()) {
                 ArrayList<String> listOfColumns = new ArrayList();
                 for (int i = 1; i <= numberOfColumns; i++) {
-                    listOfColumns.add(rs.getString(i));                 
+                    listOfColumns.add(rs.getString(i));
                 }
                 dtm.addRow(listOfColumns.toArray());
             }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -194,15 +196,15 @@ public class AddingNewTrainer extends JFrame {
         });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Username", "Name", "Surname", "Date of birth", "Email", "Phone ", "Password", "Gender"
-            }
+                new Object[][]{
+                        {null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null, null}
+                },
+                new String[]{
+                        "ID", "Username", "Name", "Surname", "Date of birth", "Email", "Phone ", "Password", "Gender"
+                }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -252,152 +254,152 @@ public class AddingNewTrainer extends JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel10))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(passwordfield, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                        .addComponent(phonenumberfield, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                        .addComponent(gendertextfield)))
-                                .addComponent(showpasswordcheckbox, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(surnamefield, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(emailfield, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(dobfield, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(51, 51, 51)
-                                        .addComponent(firstnamefield, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jLabel12)
-                                                .addGap(72, 72, 72)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(usernamefield, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                            .addComponent(idtextfield)))))
-                            .addComponent(jLabel1))
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(deletebutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(submitbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                            .addComponent(resetbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                            .addComponent(trainerloginaddbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                            .addComponent(jLabel11)
-                            .addComponent(searchid)
-                            .addComponent(updatebutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(backbutton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(exporttopdfbutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(134, 134, 134)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(layout.createSequentialGroup()
+                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(jLabel7)
+                                                                                .addComponent(jLabel10))
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                                .addComponent(passwordfield, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                                                                .addComponent(phonenumberfield, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                                                                .addComponent(gendertextfield)))
+                                                                .addComponent(showpasswordcheckbox, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                                                .addComponent(jLabel5)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                .addComponent(surnamefield, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                                                .addComponent(jLabel8)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                .addComponent(emailfield, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                                                .addComponent(jLabel6)
+                                                                                .addGap(18, 18, 18)
+                                                                                .addComponent(dobfield, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(jLabel4)
+                                                                                .addGap(51, 51, 51)
+                                                                                .addComponent(firstnamefield, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                                .addComponent(jLabel3)
+                                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                                                .addComponent(jLabel12)
+                                                                                                .addGap(72, 72, 72)))
+                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                                        .addComponent(usernamefield, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                                                                        .addComponent(idtextfield)))))
+                                                        .addComponent(jLabel1))
+                                                .addGap(66, 66, 66)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(deletebutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(submitbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                                        .addComponent(resetbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                                        .addComponent(trainerloginaddbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                                        .addComponent(jLabel11)
+                                                        .addComponent(searchid)
+                                                        .addComponent(updatebutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(backbutton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(exporttopdfbutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jScrollPane1)
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(56, 56, 56))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(searchid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel12))
-                            .addComponent(idtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(resetbutton)
-                            .addComponent(jLabel3)
-                            .addComponent(usernamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(backbutton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(surnamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(trainerloginaddbutton, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(7, 7, 7)
-                                        .addComponent(dobfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(emailfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(submitbutton)))
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(deletebutton)
-                                        .addGap(23, 23, 23)
-                                        .addComponent(updatebutton)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(exporttopdfbutton)
-                                        .addGap(95, 95, 95))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel7)
-                                            .addComponent(phonenumberfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(30, 30, 30)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10)
-                                            .addComponent(passwordfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(11, 11, 11)
-                                        .addComponent(showpasswordcheckbox)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel9)
-                                            .addComponent(gendertextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
-                            .addGroup(layout.createSequentialGroup()
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(firstnamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(56, 56, 56))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(87, 87, 87)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel11)
+                                                        .addComponent(jLabel1))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(searchid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(5, 5, 5)
+                                                                .addComponent(jLabel12))
+                                                        .addComponent(idtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(19, 19, 19)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(resetbutton)
+                                                        .addComponent(jLabel3)
+                                                        .addComponent(usernamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(29, 29, 29)
+                                                                .addComponent(backbutton)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(jLabel5)
+                                                                        .addComponent(surnamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(trainerloginaddbutton, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addGap(7, 7, 7)
+                                                                                .addComponent(dobfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                .addGap(25, 25, 25)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel8)
+                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                .addComponent(emailfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(submitbutton)))
+                                                                .addGap(29, 29, 29)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(deletebutton)
+                                                                                .addGap(23, 23, 23)
+                                                                                .addComponent(updatebutton)
+                                                                                .addGap(18, 18, 18)
+                                                                                .addComponent(exporttopdfbutton)
+                                                                                .addGap(95, 95, 95))
+                                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                                                .addGap(3, 3, 3)
+                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                        .addComponent(jLabel7)
+                                                                                        .addComponent(phonenumberfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addGap(30, 30, 30)
+                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                        .addComponent(jLabel10)
+                                                                                        .addComponent(passwordfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addGap(11, 11, 11)
+                                                                                .addComponent(showpasswordcheckbox)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                        .addComponent(jLabel9)
+                                                                                        .addComponent(gendertextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(jLabel4)
+                                                                        .addComponent(firstnamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
         );
 
         pack();
@@ -407,9 +409,8 @@ public class AddingNewTrainer extends JFrame {
     private void showpasswordcheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showpasswordcheckboxMouseClicked
         // TODO add your handling code here:
         if (showpasswordcheckbox.isSelected()) {
-            passwordfield.setEchoChar((char)0);
-        }
-        else {
+            passwordfield.setEchoChar((char) 0);
+        } else {
             passwordfield.setEchoChar('*');
         }
     }//GEN-LAST:event_showpasswordcheckboxMouseClicked
@@ -432,20 +433,20 @@ public class AddingNewTrainer extends JFrame {
 
     private void submitbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitbuttonMouseClicked
         // TODO add your handling code here:
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(dobfield.getDate());
-        
+
 
         if (usernamefield.getText().isEmpty() || firstnamefield.getText().isEmpty() || surnamefield.getText().isEmpty() || dobfield.getDate().toString().isEmpty() || emailfield.getText().isEmpty() || phonenumberfield.getText().isEmpty() || passwordfield
-            .getText().isEmpty() || gendertextfield.getText().isEmpty()) {
+                .getText().isEmpty() || gendertextfield.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Missing information, fields can't be empty", "", JOptionPane.WARNING_MESSAGE);
 
         } else {
             try {
                 String query = "INSERT INTO employees_table VALUES(?,?,?,?,?,?,?,?,?)";
                 PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
-                
+
                 pst.setString(1, idtextfield.getText());
                 pst.setString(2, usernamefield.getText());
                 pst.setString(3, firstnamefield.getText());
@@ -455,14 +456,14 @@ public class AddingNewTrainer extends JFrame {
                 pst.setInt(7, Integer.valueOf(phonenumberfield.getText()));
                 pst.setString(8, passwordfield.getText());
                 pst.setString(9, gendertextfield.getText());
-                
-    
+
+
                 int row = pst.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Trainer account successfully created", "", JOptionPane.INFORMATION_MESSAGE);
                 pst.close();
                 showRecords();
                 resetFields();
-                
+
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(this, e + "\nTrainer account creation failed", "", JOptionPane.ERROR_MESSAGE);
 
@@ -475,7 +476,7 @@ public class AddingNewTrainer extends JFrame {
         Addingtrainerlogin atlg = new Addingtrainerlogin();
         atlg.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_trainerloginaddbuttonMouseClicked
 
     private void searchidMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchidMouseReleased
@@ -492,19 +493,19 @@ public class AddingNewTrainer extends JFrame {
 
     private void deletebuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebuttonMouseClicked
         // TODO add your handling code here:
-            
-        int delete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this data?", "",JOptionPane.YES_NO_OPTION);
-        if(delete==0){
+
+        int delete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this data?", "", JOptionPane.YES_NO_OPTION);
+        if (delete == 0) {
             try {
                 int row = jTable1.getSelectedRow();
-                String value = (jTable1.getModel().getValueAt(row,0).toString());
-                
-                String query = "DELETE FROM employees_table WHERE id ="+ value;
+                String value = (jTable1.getModel().getValueAt(row, 0).toString());
+
+                String query = "DELETE FROM employees_table WHERE id =" + value;
                 PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Deleted successfully", "", JOptionPane.INFORMATION_MESSAGE);
                 showRecords();
-                
+
             } catch (HeadlessException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -514,53 +515,53 @@ public class AddingNewTrainer extends JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
 
-int i = jTable1.getSelectedRow();
-TableModel model = jTable1.getModel();
+        int i = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
 
-idtextfield.setText(model.getValueAt(i, 0).toString());
-usernamefield.setText(model.getValueAt(i, 1).toString());
-firstnamefield.setText(model.getValueAt(i, 2).toString());
-surnamefield.setText(model.getValueAt(i, 3).toString());
+        idtextfield.setText(model.getValueAt(i, 0).toString());
+        usernamefield.setText(model.getValueAt(i, 1).toString());
+        firstnamefield.setText(model.getValueAt(i, 2).toString());
+        surnamefield.setText(model.getValueAt(i, 3).toString());
         try {
             int srow = jTable1.getSelectedRow();
-            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(srow, 4));
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) model.getValueAt(srow, 4));
             dobfield.setDate(date);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-      emailfield.setText(model.getValueAt(i, 5).toString());
-      phonenumberfield.setText(model.getValueAt(i, 6).toString());
-      passwordfield.setText(model.getValueAt(i, 7).toString());
-      gendertextfield.setText(model.getValueAt(i, 8).toString());
-               
+        emailfield.setText(model.getValueAt(i, 5).toString());
+        phonenumberfield.setText(model.getValueAt(i, 6).toString());
+        passwordfield.setText(model.getValueAt(i, 7).toString());
+        gendertextfield.setText(model.getValueAt(i, 8).toString());
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void updatebuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updatebuttonMouseClicked
         // TODO add your handling code here:
 
         try {
-            
+
             String value = idtextfield.getText();
             String query = "UPDATE employees_table SET username = ?, name = ?, surname = ?, dateofbirth = ?, email = ?, phonenumber = ?, password = ?, gender = ? WHERE id =" + value;
-            
+
             PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
-            
-                pst.setString(1, usernamefield.getText());
-                pst.setString(2, firstnamefield.getText());
-                pst.setString(3, surnamefield.getText());
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String date = sdf.format(dobfield.getDate());
-                pst.setString(4, date);
-                pst.setString(5, emailfield.getText());
-                pst.setInt(6, Integer.valueOf(phonenumberfield.getText()));
-                pst.setString(7, passwordfield.getText());
-                pst.setString(8, gendertextfield.getText());
-            
-                pst.executeUpdate();
-                showRecords();
-            
-            JOptionPane.showMessageDialog(this, "Updated successfully", "", JOptionPane.INFORMATION_MESSAGE);           
+
+            pst.setString(1, usernamefield.getText());
+            pst.setString(2, firstnamefield.getText());
+            pst.setString(3, surnamefield.getText());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(dobfield.getDate());
+            pst.setString(4, date);
+            pst.setString(5, emailfield.getText());
+            pst.setInt(6, Integer.valueOf(phonenumberfield.getText()));
+            pst.setString(7, passwordfield.getText());
+            pst.setString(8, gendertextfield.getText());
+
+            pst.executeUpdate();
+            showRecords();
+
+            JOptionPane.showMessageDialog(this, "Updated successfully", "", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -570,14 +571,14 @@ surnamefield.setText(model.getValueAt(i, 3).toString());
         // TODO add your handling code here:
         MessageFormat header = new MessageFormat("Gym employees list");
         MessageFormat footer = new MessageFormat("1");
-        
+
         try {
             PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
             set.add(OrientationRequested.LANDSCAPE);
             jTable1.print(JTable.PrintMode.FIT_WIDTH, header, footer, true, set, true);
             JOptionPane.showMessageDialog(null, "Exported to PDF successfully", "", JOptionPane.INFORMATION_MESSAGE);
         } catch (HeadlessException | PrinterException e) {
-           JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_exporttopdfbuttonMouseClicked
 
@@ -588,7 +589,7 @@ surnamefield.setText(model.getValueAt(i, 3).toString());
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -608,10 +609,10 @@ surnamefield.setText(model.getValueAt(i, 3).toString());
         }
         //</editor-fold>
         try {
-    UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
-    } catch( UnsupportedLookAndFeelException ex ) {
-    System.err.println( "Failed to initialize LaF" );
-    }
+            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
+        } catch (UnsupportedLookAndFeelException ex) {
+            System.err.println("Failed to initialize LaF");
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -658,6 +659,5 @@ surnamefield.setText(model.getValueAt(i, 3).toString());
     private javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
 
-   
-    
+
 }
