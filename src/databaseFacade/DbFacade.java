@@ -3,19 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package databaseFacade;
+
 import databaseConnection.DatabaseConnection;
+
 import java.awt.HeadlessException;
 import java.sql.*;
 import java.sql.ResultSet;
 
 /**
- * This class represent Facade pattern which encapsulates 
+ * This class represent Facade pattern which encapsulates
  * communication methods to work with databases
+ *
  * @author pc
  */
 
 public class DbFacade extends DatabaseConnection {
-        
+
     public static boolean loginUser(String userName, String password, String userType) {
         try {
             String query = "SELECT * FROM logintable WHERE username = ? AND password = ? and usertype = ?";
@@ -33,28 +36,3 @@ public class DbFacade extends DatabaseConnection {
     }
 
 }
-
-
-
- 
-   
-
-
-
-   
-    
-      
-    
-    
-    
-
-    
-    
-    
-
-    
-    
-
-
-    
-
