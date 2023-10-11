@@ -5,29 +5,30 @@
 package resetFieldThread;
 
 import com.toedter.calendar.JDateChooser;
+
 import java.util.ArrayList;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
- *
  * @author pc
  */
 public class ResetFieldRunnable implements Runnable {
 
     private ArrayList<JTextField> listOfTextFields;
-    private JDateChooser calendar; 
+    private JDateChooser calendar;
     private JPasswordField passwordField;
-    
+
     public ResetFieldRunnable(
-            ArrayList<JTextField> listOfTextFields, 
-            JDateChooser calendar, 
+            ArrayList<JTextField> listOfTextFields,
+            JDateChooser calendar,
             JPasswordField passwordField) {
-    
+
         this.listOfTextFields = listOfTextFields;
         this.calendar = calendar;
         this.passwordField = passwordField;
     }
+
     @Override
     public void run() {
         for (int i = 0; i < listOfTextFields.size(); i++) {
@@ -36,7 +37,6 @@ public class ResetFieldRunnable implements Runnable {
         }
         calendar.setCalendar(null);
         passwordField.setText("");
-    }  
+    }
 }
-
 
