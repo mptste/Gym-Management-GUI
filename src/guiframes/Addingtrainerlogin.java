@@ -8,6 +8,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighte
 import com.mysql.cj.protocol.Resultset;
 import com.mysql.cj.x.protobuf.MysqlxResultset.Row;
 import databaseConnection.DatabaseConnection;
+
 import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,12 +18,16 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.ArrayList;
+
 import static java.util.Locale.filter;
+
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+
 import static javax.swing.SwingConstants.RIGHT;
+
 import javax.swing.table.JTableHeader;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableRowSorter;
@@ -30,7 +35,6 @@ import javax.swing.table.TableModel;
 
 
 /**
- *
  * @author pc
  */
 public class Addingtrainerlogin extends javax.swing.JFrame {
@@ -39,39 +43,39 @@ public class Addingtrainerlogin extends javax.swing.JFrame {
      * Creates a new form Addingtrainerlogin
      */
     public Addingtrainerlogin() {
-      initComponents();
-      showrec();
+        initComponents();
+        showrec();
     }
-    
+
     private void clear() {
         usernamefield.setText("");
         passwordfield.setText("");
         usertypefield.setText("");
     }
-    
+
     public void showrec() {
         try {
-            
+
             String query = "SELECT * FROM logintable";
             PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            
+
             ResultSetMetaData rsm = rs.getMetaData();
             int numberOfColumns = rsm.getColumnCount();
             DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
             dtm.setRowCount(0);
-            
-            while (rs.next()) {                
+
+            while (rs.next()) {
                 ArrayList<String> listOfColumns = new ArrayList();
                 for (int i = 1; i <= numberOfColumns; i++) {
                     listOfColumns.add(rs.getString(i));
                 }
                 dtm.addRow(listOfColumns.toArray());
-            }     
+            }
         } catch (SQLException e) {
-      }      
-   }
-    
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,12 +117,12 @@ public class Addingtrainerlogin extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -167,15 +171,15 @@ public class Addingtrainerlogin extends javax.swing.JFrame {
         jLabel4.setText("ID:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Username", "Password", "User type"
-            }
+                new Object[][]{
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String[]{
+                        "ID", "Username", "Password", "User type"
+                }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -209,107 +213,107 @@ public class Addingtrainerlogin extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(idfield, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                                    .addComponent(usernamefield)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(usertypefield)
-                                    .addComponent(passwordfield))))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(searchid, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(showpasswordcheckbox)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(152, 152, 152)
-                                    .addComponent(submitbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel5)
-                                    .addGap(67, 67, 67))))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(updatebutton, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                            .addComponent(deletebutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(resetbutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(118, 118, 118))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jScrollPane2)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel1)
+                                                                        .addComponent(jLabel4))
+                                                                .addGap(18, 18, 18)
+                                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(idfield, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                                                                        .addComponent(usernamefield)))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel2)
+                                                                        .addComponent(jLabel3))
+                                                                .addGap(21, 21, 21)
+                                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(usertypefield)
+                                                                        .addComponent(passwordfield))))
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(searchid, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                        .addGap(18, 18, 18)
+                                                                        .addComponent(showpasswordcheckbox)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                        .addGap(152, 152, 152)
+                                                                        .addComponent(submitbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(jLabel5)
+                                                                        .addGap(67, 67, 67))))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(updatebutton, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                                        .addComponent(deletebutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(resetbutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(118, 118, 118))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(resetbutton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(searchid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(usernamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(passwordfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(showpasswordcheckbox)
-                        .addComponent(jButton1)
-                        .addComponent(updatebutton))
-                    .addComponent(jLabel2))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(usertypefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(submitbutton)
-                    .addComponent(deletebutton))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(35, 35, 35)
+                                                .addComponent(jLabel5))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(idfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel4))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(resetbutton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(searchid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel1)
+                                                .addComponent(usernamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(passwordfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(showpasswordcheckbox)
+                                                .addComponent(jButton1)
+                                                .addComponent(updatebutton))
+                                        .addComponent(jLabel2))
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel3)
+                                        .addComponent(usertypefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(submitbutton)
+                                        .addComponent(deletebutton))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
 
         pack();
@@ -319,7 +323,7 @@ public class Addingtrainerlogin extends javax.swing.JFrame {
     private void showpasswordcheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showpasswordcheckboxMouseClicked
         // TODO add your handling code here:
         if (showpasswordcheckbox.isSelected()) {
-            passwordfield.setEchoChar((char)0);
+            passwordfield.setEchoChar((char) 0);
         } else {
             passwordfield.setEchoChar('*');
         }
@@ -346,27 +350,27 @@ public class Addingtrainerlogin extends javax.swing.JFrame {
 
     private void submitbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitbuttonMouseClicked
         // TODO add your handling code here:
-if (usernamefield.getText().isEmpty() || passwordfield.getText().isEmpty() || usertypefield.getText().isEmpty()) {
-     JOptionPane.showMessageDialog(this, "Missing information, fields can't be empty", "", JOptionPane.WARNING_MESSAGE);
+        if (usernamefield.getText().isEmpty() || passwordfield.getText().isEmpty() || usertypefield.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Missing information, fields can't be empty", "", JOptionPane.WARNING_MESSAGE);
 
-        try {
-            
-            String query = "INSERT INTO `logintable`(`id`, `username`, `password`, `usertype`) VALUES(?,?,?,?)";
-            PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
-            
-            int id = Integer.parseInt(idfield.getText());
-               
-               pst.setInt(1, id);
-               pst.setString(2, usernamefield.getText());
-               pst.setString(3, passwordfield.getText());
-               pst.setString(4, usertypefield.getText());
-               
-               pst.executeUpdate();
-               showrec();
-               clear();
-                    
-        } catch (SQLException e) {
-             JOptionPane.showMessageDialog(this, e + " Trainer login account creation failed", "", JOptionPane.ERROR_MESSAGE);
+            try {
+
+                String query = "INSERT INTO `logintable`(`id`, `username`, `password`, `usertype`) VALUES(?,?,?,?)";
+                PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
+
+                int id = Integer.parseInt(idfield.getText());
+
+                pst.setInt(1, id);
+                pst.setString(2, usernamefield.getText());
+                pst.setString(3, passwordfield.getText());
+                pst.setString(4, usertypefield.getText());
+
+                pst.executeUpdate();
+                showrec();
+                clear();
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, e + " Trainer login account creation failed", "", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_submitbuttonMouseClicked
@@ -376,43 +380,43 @@ if (usernamefield.getText().isEmpty() || passwordfield.getText().isEmpty() || us
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         TableRowSorter<DefaultTableModel> dtm1 = new TableRowSorter<>(dtm);
         jTable1.setRowSorter(dtm1);
-        dtm1.setRowFilter(RowFilter.regexFilter(searchid.getText()));       
+        dtm1.setRowFilter(RowFilter.regexFilter(searchid.getText()));
     }//GEN-LAST:event_searchidKeyReleased
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:      
         int i = jTable1.getSelectedRow();
-        
-        String id = jTable1.getValueAt(i,0).toString();
+
+        String id = jTable1.getValueAt(i, 0).toString();
         String usrnm = jTable1.getValueAt(i, 1).toString();
         String passw = jTable1.getValueAt(i, 2).toString();
         String utype = jTable1.getValueAt(i, 3).toString();
-        
+
         idfield.setText(id);
         usernamefield.setText(usrnm);
         passwordfield.setText(passw);
-        usertypefield.setText(utype);       
+        usertypefield.setText(utype);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void updatebuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updatebuttonMouseClicked
         // TODO add your handling code here:
-        
+
         try {
             String query = "UPDATE logintable SET username = ?, password = ?, usertype = ? WHERE id = ?";
             PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
-            
+
             int id = Integer.parseInt(idfield.getText());
 
-           
+
             pst.setString(1, usernamefield.getText());
             pst.setString(2, passwordfield.getText());
             pst.setString(3, usertypefield.getText());
             pst.setInt(4, id);
-            
+
             pst.executeUpdate();
             showrec();
-          
-            
+
+
         } catch (NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(this, e, "", JOptionPane.ERROR_MESSAGE);
 
@@ -421,28 +425,28 @@ if (usernamefield.getText().isEmpty() || passwordfield.getText().isEmpty() || us
 
     private void deletebuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebuttonMouseClicked
         // TODO add your handling code here:
-        
-        int delete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this data?", "",JOptionPane.YES_NO_OPTION);
-        if(delete==0){
-        try {
-                     
-            String query = "DELETE FROM logintable WHERE id = ?";
-            PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
-            
-            int id = Integer.parseInt(idfield.getText());
 
-            pst.setInt(1, id);
-            
-            pst.executeUpdate();
-            showrec();
+        int delete = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this data?", "", JOptionPane.YES_NO_OPTION);
+        if (delete == 0) {
+            try {
 
-            
-        } catch (NumberFormatException | SQLException e) {
-            JOptionPane.showMessageDialog(this, e, "", JOptionPane.ERROR_MESSAGE);
+                String query = "DELETE FROM logintable WHERE id = ?";
+                PreparedStatement pst = DatabaseConnection.getConnection().prepareStatement(query);
+
+                int id = Integer.parseInt(idfield.getText());
+
+                pst.setInt(1, id);
+
+                pst.executeUpdate();
+                showrec();
+
+
+            } catch (NumberFormatException | SQLException e) {
+                JOptionPane.showMessageDialog(this, e, "", JOptionPane.ERROR_MESSAGE);
 
             }
         }
-        
+
     }//GEN-LAST:event_deletebuttonMouseClicked
 
     /**
@@ -452,7 +456,7 @@ if (usernamefield.getText().isEmpty() || passwordfield.getText().isEmpty() || us
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -472,10 +476,10 @@ if (usernamefield.getText().isEmpty() || passwordfield.getText().isEmpty() || us
         }
         //</editor-fold>
         try {
-    UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
-    } catch( UnsupportedLookAndFeelException ex ) {
-    System.err.println( "Failed to initialize LaF" );
-    }
+            UIManager.setLookAndFeel(new FlatMaterialLighterIJTheme());
+        } catch (UnsupportedLookAndFeelException ex) {
+            System.err.println("Failed to initialize LaF");
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
